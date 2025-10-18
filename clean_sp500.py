@@ -2,7 +2,7 @@ import pandas as pd
 
 # Load CSV (skipping first two rows) and assign correct column names manually
 column_names = ["Date", "Close", "High", "Low", "Open", "Volume"]
-df = pd.read_csv("sp500_data.csv", skiprows=2, names=column_names, parse_dates=["Date"])
+df = pd.read_csv("data/sp500_data.csv", skiprows=2, names=column_names, parse_dates=["Date"])
 
 # 1. Preview the dataset
 print("📌 Initial rows:")
