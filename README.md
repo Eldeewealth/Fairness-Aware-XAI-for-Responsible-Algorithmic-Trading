@@ -173,6 +173,6 @@ Add the project license file (`LICENSE`) and specify the applicable terms here (
 
 ## Contact Information
 For correspondence, reproducibility queries, or reporting issues:
-- Corresponding author: **[Name, Affiliation]**
-- Email: **[email@institution.edu]**
+- Corresponding author: **Loveday Okwudiri Okoro**
+- Email: **loveday0@acm.org**
 - Repository issues: use the GitHub Issues tab for traceable technical discussion.
