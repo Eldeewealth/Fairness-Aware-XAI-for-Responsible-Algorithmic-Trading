@@ -1,0 +1,14 @@
+artifact_uri: file:///c:/Users/DELL/Documents/GitHub/XAI%20Project/mlruns/590083108120657289/c68b49239af14092b9c09738b0491920/artifacts
+end_time: 1765819454512
+entry_point_name: ''
+experiment_id: '590083108120657289'
+lifecycle_stage: active
+run_id: c68b49239af14092b9c09738b0491920
+run_name: baseline_vs_fairness
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1765819454192
+status: 3
+tags: []
+user_id: DELL
