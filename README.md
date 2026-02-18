@@ -160,7 +160,7 @@ Consistent with the paper, fairness-constrained learning reduces disparity in gr
 ```bibtex
 @article{2026_fair_xai_trading,
   title   = {Fairness-Aware Explainable AI for Responsible Algorithmic Trading},
-  author  = {Loveday Okoro, Dr. Anchzl Garg and Evans Onwe},
+  author  = {Loveday Okoro, Dr. Anchal Garg and Evans Onwe},
   journal = {Digital Finance},
   year    = {2026},
   note    = {Under review / accepted version pending},
