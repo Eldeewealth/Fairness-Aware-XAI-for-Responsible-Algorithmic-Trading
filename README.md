@@ -18,7 +18,7 @@ The implementation includes:
 ## Research Contribution
 This work operationalizes responsible AI for financial prediction by jointly evaluating:
 - Predictive utility
-- Group fairness under market regime stratification
+- Group fairness under volatile market group stratification
 - Model interpretability
 - Probability calibration
 - Economic relevance via trading simulation
