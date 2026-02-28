@@ -1,77 +1,91 @@
-# Fairness-Aware Explainable AI for Responsible Algorithmic Trading
+Fairness-Aware Explainable AI for Responsible Algorithmic Trading
 
-Repository accompanying the Springer *Digital Finance* submission:
+Repository accompanying the Springer Digital Finance submission:
+“Fairness-Aware Explainable AI for Responsible Algorithmic Trading”
 
-**“Fairness-Aware Explainable AI for Responsible Algorithmic Trading”**
+Project Overview
 
----
+This repository provides an end-to-end experimental pipeline for fairness-aware binary classification of next-day S&P 500 direction, combining:
 
-## Project Overview
+Predictive modeling
 
-This repository provides an end-to-end experimental pipeline for **fairness-aware binary classification of next-day S&P 500 direction**, combining:
+Fairness mitigation
 
-- Predictive modeling  
-- Fairness mitigation  
-- Explainability  
-- Calibration assessment  
-- Strategy-level backtesting  
+Explainability
+
+Calibration assessment
+
+Strategy-level backtesting
 
 The implementation includes:
 
-- **LightGBM** baseline classifier  
-- **Fairlearn Exponentiated Gradient** with **Demographic Parity**  
-- Group-level fairness analysis across volatility regimes  
-- **SHAP**-based feature attribution (baseline vs. fairness-mitigated)  
-- **Calibration** diagnostics (reliability curve, Brier score)  
-- Trading simulation & cumulative return comparison  
-- **MLflow** experiment tracking  
+LightGBM baseline classifier (XGBoost optional)
 
----
+Fairness mitigation using Exponentiated Gradient with Demographic Parity (Fairlearn)
 
-## Research Contribution
+Group-level fairness analysis across volatility regimes
 
-This work operationalizes **responsible AI** for financial prediction by jointly evaluating:
+SHAP-based feature attribution (baseline vs. fairness-mitigated model)
 
-- Predictive utility  
-- Group fairness under volatility-regime stratification  
-- Model interpretability (SHAP)  
-- Probability calibration  
-- Economic relevance via backtesting  
+Calibration diagnostics (reliability curve, Brier score)
 
-The contribution is **methodological and empirical**: fairness constraints are applied in a **time-ordered financial context**, and results are interpreted statistically and economically.
+Trading simulation and cumulative return comparison
 
----
+MLflow experiment tracking
 
-## Methodology Overview
+Research Contribution
 
-1. Acquire S&P 500 historical data (`^GSPC`) via `yfinance`.  
-2. Clean & validate data (missingness, duplicates, ordering).  
-3. Construct target variable **`next_day_up`** and feature set.  
-4. Define sensitive attribute **`group_volatility`** (low/med/high).  
-5. Apply **time-ordered** train/test split (no shuffling).  
-6. Train baseline **LightGBM** model.  
-7. Train fairness‑mitigated model using **Exponentiated Gradient + Demographic Parity**.  
-8. Evaluate overall & group-level metrics.  
-9. Compute **SHAP** explanations for both models.  
-10. Assess calibration (reliability curve + scoring rules).  
-11. Run trading simulation & compare returns.  
-12. Log artifacts & metrics using **MLflow**.  
+This work operationalizes responsible AI for financial prediction by jointly evaluating:
 
----
+Predictive utility
 
-## Repository Structure
+Group fairness under volatility-regime stratification
+
+Model interpretability (SHAP)
+
+Probability calibration (reliability + scoring)
+
+Economic relevance via simple backtesting
+
+The contribution is methodological and empirical: fairness constraints are tested in a time-ordered market setting; outcomes are interpreted statistically and economically.
+
+Methodology Overview
+
+Acquire S&P 500 historical data (^GSPC) via yfinance.
+
+Clean and validate data (missingness, duplicates, chronological order).
+
+Construct target variable next_day_up and feature set.
+
+Define sensitive attribute group_volatility (low/med/high).
+
+Apply time-ordered train/test split (no random shuffling).
+
+Train baseline LightGBM model.
+
+Train fairness-mitigated model using Exponentiated Gradient with Demographic Parity.
+
+Evaluate overall and group-level metrics.
+
+Compute SHAP explanations (baseline vs. fair).
+
+Assess calibration (reliability curve + Brier score).
+
+Backtest signals and compare cumulative performance.
+
+Log artifacts and metrics (MLflow).
+
+Repository Structure
 .
 ├─ data/                               # Raw downloaded data (created by datafile.py)
 ├─ artifacts/                          # Figures, fairness tables, SHAP outputs
-├─ mlruns/                             # MLflow tracking outputs
+├─ mlruns/                             # MLflow experiment tracking
 │
-├─ datafile.py                         # Download S&P 500 (^GSPC) via yfinance → data/sp500_data.csv
-├─ clean_sp500.py                      # Clean & export to sp500_clean.csv
-│
-├─ fairness_check.ipynb                # Main end-to-end notebook
-├─ fairness_check.html                 # HTML export of notebook
-│
-├─ sp500_clean.csv                     # Cleaned dataset for modeling
+├─ datafile.py                         # Download ^GSPC via yfinance → data/sp500_data.csv
+├─ clean_sp500.py                      # Clean and export to sp500_clean.csv
+├─ fairness_check.ipynb                # End-to-end analysis notebook
+├─ fairness_check.html                 # HTML export of the notebook
+├─ sp500_clean.csv                     # Cleaned modeling table
 │
 ├─ calibration_baseline.png
 ├─ figure8_calibration.png
@@ -81,117 +95,148 @@ The contribution is **methodological and empirical**: fairness constraints are a
 ├─ fig3_next_day_up_diagram.png
 ├─ selection_rate_stability_over_time.png
 │
-├─ requirements.txt                    # Core pinned dependencies
-├─ requirements-notebooks.txt          # Optional: Jupyter dependencies
-│
-├─ LICENSE                             # Apache-2.0 license
+├─ requirements.txt                    # Core, pinned dependencies
+├─ requirements-notebooks.txt          # Optional: Jupyter extras (if running notebooks)
+├─ LICENSE                             # Apache-2.0
 ├─ NOTICE                              # Apache-2.0 NOTICE
 └─ README.md
+Installation Instructions
 
----
+Tested on Python 3.13.3 (Python 3.10+ recommended)
 
-## Installation Instructions
-
-**Tested on Python 3.13.3 (Python 3.10+ recommended)**
-
-```bash
-# 1) Create and activate a virtual environment
+1) Create and activate a virtual environment
 python -m venv .venv
 
-# Windows
+# Windows (PowerShell)
 . .venv\Scripts\Activate.ps1
 
 # macOS/Linux
 source .venv/bin/activate
-
-# 2) Install core dependencies
+2) Install core dependencies
 python -m pip install --upgrade pip
 pip install -r requirements.txt
-
-# 3) Optional: install notebook dependencies
+3) (Optional) Install notebook dependencies
 pip install -r requirements-notebooks.txt
-
-
 Data Source (S&P 500 via yfinance)
 
 Instrument: S&P 500 index (^GSPC)
-Provider: yfinance
-Typical fields: OHLCV + timestamp
-Download script: datafile.py
-Cleaned table: sp500_clean.csv
 
-Note: Market data is not redistributed. Re-download using the provided script for full reproducibility.
+Interface: yfinance
+
+Typical fields: Open, High, Low, Close, Volume, timestamp
+
+Download script: datafile.py
+
+Cleaned table used in experiments: sp500_clean.csv
+
+Note: Market data is subject to provider terms; raw data is not redistributed here.
+Re-download using the provided script for full reproducibility.
 
 Reproducibility Instructions
 Step-by-step pipeline
-Shell# Step 1: Download raw datapython datafile.py# Step 2: Clean and validate datapython clean_sp500.py# Step 3: Run the notebookjupyter notebook fairness_check.ipynbShow more lines
+# Step 1: Download raw data → data/sp500_data.csv
+python datafile.py
+
+# Step 2: Clean and validate → sp500_clean.csv
+python clean_sp500.py
+
+# Step 3: Run the notebook
+jupyter notebook fairness_check.ipynb
 Optional: non-interactive execution
-Shelljupyter nbconvert --to notebook --execute fairness_check.ipynb \  --output fairness_check.executed.ipynb --ExecutePreprocessor.timeout=0Show more lines
-
-Reproducibility Workflow Diagram
+jupyter nbconvert --to notebook --execute fairness_check.ipynb \
+  --output fairness_check.executed.ipynb \
+  --ExecutePreprocessor.timeout=0
+Workflow diagram (text)
 yfinance (^GSPC)
-   → raw CSV (data/sp500_data.csv)
-   → cleaning/validation (clean_sp500.py)
-   → modeling table (sp500_clean.csv)
-   → feature + target construction (next_day_up)
-   → volatility group assignment (group_volatility)
-   → time-ordered train/test split
-   → baseline LightGBM + fairness-constrained model
-   → evaluation (utility, DP gap, fairness metrics, SHAP, calibration)
-   → trading signal generation + backtest
-   → MLflow artifacts + saved figures/tables
-
-
+  → data/sp500_data.csv
+  → clean_sp500.py
+  → sp500_clean.csv
+  → feature + target construction (next_day_up)
+  → volatility grouping (group_volatility)
+  → time-ordered train/test split
+  → baseline LightGBM + fairness-constrained model
+  → evaluation (utility, DP gap, SHAP, calibration)
+  → trading signals + backtest
+  → artifacts/mlruns + saved figures
 Fairness Framework
-Fairness mitigation uses:
+
+Fairness mitigation is implemented via:
 
 fairlearn.reductions.ExponentiatedGradient
+
 Constraint: DemographicParity
 
-Sensitive groups: volatility regimes (group_volatility)
+Sensitive groups are based on volatility regimes (group_volatility).
+
 We report:
 
-Selection rate by group
-Accuracy by group
-Demographic Parity gap
-Utility–fairness trade-offs
+Overall utility (accuracy, balanced accuracy, PR/ROC where appropriate)
 
-This supports transparent analysis under heterogeneous market conditions.
+Group-disaggregated metrics (e.g., selection rate, accuracy)
+
+Demographic parity gap before/after mitigation
+
+This setup supports transparent inspection of utility–fairness trade-offs under market heterogeneity.
 
 Explainability & Evaluation
 Explainability
 
-SHAP (TreeExplainer)
-Global feature importance
-Dependence plots
-Comparison of baseline vs. fairness-mitigated explanations
+SHAP (TreeExplainer) for baseline and fair models
+
+Global importance and dependence plots
+
+Compare attribution shifts after fairness constraints
 
 Evaluation
 
 Utility: accuracy, balanced accuracy, confusion matrices
-Fairness: selection rates, DP gap
-Calibration: reliability curve, Brier score
-Economic: growth curves (backtesting)
 
+Fairness: selection rates + DP gap
+
+Calibration: reliability curve, Brier score (ECE-style optional)
+
+Economic: strategy backtest equity curves and stability
 
 Results Summary
-Fairness‑constrained learning reduces group-level selection disparity versus the baseline, with expected utility trade-offs. Effects are examined across predictive accuracy, calibration behavior, and economic backtesting impacts.
+
+Fairness-constrained learning reduces group-level selection-rate disparity relative to the unconstrained baseline, with expected trade-offs in utility.
+We document effects across predictive, calibration, and backtesting perspectives.
+Full quantitative results appear in the manuscript tables and figures.
 
 Code Availability
-A versioned, archived snapshot of this repository will be available on Zenodo after publishing the GitHub release.
-DOI: https://doi.org/YOUR-DOI-HERE
-(Replace once Zenodo generates your DOI.)
 
+A versioned, archived snapshot of this repository will be available on Zenodo after publishing the GitHub release.
+
+DOI:
+
+https://doi.org/YOUR-DOI-HERE
+
+(Replace after you archive Release v1.0.0 to Zenodo and obtain the DOI.)
+
+Optional badge (after DOI):
+
+[![DOI](https://zenodo.org/badge/DOI/YOUR-DOI-HERE.svg)](https://doi.org/YOUR-DOI-HERE)
 License
-This project is licensed under the Apache License 2.0.
-See LICENSE and NOTICE (required for downstream redistribution).
+
+This project is released under the Apache License 2.0.
+See the included LICENSE and NOTICE files.
+Downstream redistributions should preserve the NOTICE file as required by Apache-2.0.
 
 Citation
-BibTeX@article{2026_fair_xai_trading,  title   = {Fairness-Aware Explainable AI for Responsible Algorithmic Trading},  author  = {Loveday Okwudiri Okoro and Anchal Garg and Evans Onwe},  journal = {Digital Finance},  year    = {2026},  note    = {Under review / accepted version pending},  doi     = {YOUR-DOI-HERE}}Show more lines
-
+@article{2026_fair_xai_trading,
+  title   = {Fairness-Aware Explainable AI for Responsible Algorithmic Trading},
+  author  = {Loveday Okwudiri Okoro and Anchal Garg and Evans Onwe},
+  journal = {Digital Finance},
+  year    = {2026},
+  note    = {Under review / accepted version pending},
+  doi     = {YOUR-DOI-HERE}
+}
 Contact
-For correspondence or reproducibility issues:
 
-Loveday Okwudiri Okoro
+For correspondence, reproducibility queries, or reporting issues:
+
+Corresponding author: Loveday Okwudiri Okoro
+
 Email: lovedayo@acm.org
-Use GitHub Issues for technical discussion
+
+Use GitHub Issues for technical discussion and traceability
