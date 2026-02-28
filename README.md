@@ -219,7 +219,7 @@ See the included [LICENSE](LICENSE) and [NOTICE](NOTICE) files.
 ```bibtex
 @article{2026_fair_xai_trading,
   title   = {Fairness-Aware Explainable AI for Responsible Algorithmic Trading},
-  author  = {Loveday Okwudiri Okoro and Anchal Garg and Evans Onwe},
+  author  = {Loveday Okwudiri Okoro, Anchal Garg and Evans Onwe},
   journal = {Digital Finance},
   year    = {2026},
   note    = {Under review / accepted version pending},
