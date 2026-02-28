@@ -194,7 +194,7 @@ The notebook compares strategy growth trajectories between baseline and fairness
 ### Trading Simulation (Cumulative Returns)
 
 <p align="center">
-  ![Trading Simulation](selection_rate_stability_over_time.png)
+  <img src="selection_rate_stability_over_time.png" alt="Trading Simulation" width="600"/>
 </p>
 
 ---
