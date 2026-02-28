@@ -18,7 +18,7 @@ The implementation includes:
 ## Research Contribution
 This work operationalizes responsible AI for financial prediction by jointly evaluating:
 - Predictive utility
-- Group fairness under market regime stratification
+- Group fairness under volatile market group stratification
 - Model interpretability
 - Probability calibration
 - Economic relevance via trading simulation
@@ -158,9 +158,9 @@ Consistent with the paper, fairness-constrained learning reduces disparity in gr
 
 ## Citation
 ```bibtex
-@article{PLACEHOLDER2026_fair_xai_trading,
+@article{2026_fair_xai_trading,
   title   = {Fairness-Aware Explainable AI for Responsible Algorithmic Trading},
-  author  = {Author, First and Author, Second and Author, Third},
+  author  = {Loveday Okoro, Dr. Anchal Garg and Evans Onwe},
   journal = {Digital Finance},
   year    = {2026},
   note    = {Under review / accepted version pending},
@@ -173,6 +173,6 @@ Add the project license file (`LICENSE`) and specify the applicable terms here (
 
 ## Contact Information
 For correspondence, reproducibility queries, or reporting issues:
-- Corresponding author: **[Name, Affiliation]**
-- Email: **[email@institution.edu]**
+- Corresponding author: **Loveday Okwudiri Okoro**
+- Email: **lovedayo@acm.org**
 - Repository issues: use the GitHub Issues tab for traceable technical discussion.
