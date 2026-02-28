@@ -189,7 +189,7 @@ This setup supports transparent inspection of utility–fairness trade-offs unde
 ## Trading Simulation Description
 
 Predicted probabilities are converted into trading signals in a simplified backtesting framework. The notebook compares strategy growth trajectories between baseline and fairness-mitigated models over the test period, linking statistical behavior to downstream economic outcomes.
-
+![Trading Simulation](images/trading_simulation.png)
 ---
 
 ## Results Summary
