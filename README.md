@@ -1,5 +1,7 @@
 # Fairness-Aware Explainable AI for Responsible Algorithmic Trading
 
+![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18813771.svg)
+
 Repository accompanying the Springer *Digital Finance* submission:
 
 **“Fairness-Aware Explainable AI for Responsible Algorithmic Trading”**
@@ -200,9 +202,9 @@ Effects are documented across predictive, calibration, and backtesting perspecti
 
 ## Code Availability
 
-A versioned, archived snapshot of this repository will be available on Zenodo after publishing the GitHub release.
+This repository has been archived and versioned on Zenodo. You can access the full snapshot and its associated DOI:
 
-DOI: https://doi.org/YOUR-DOI-HERE
+DOI: [10.5281/zenodo.18813771](https://doi.org/10.5281/zenodo.18813771)
 
 ---
 
