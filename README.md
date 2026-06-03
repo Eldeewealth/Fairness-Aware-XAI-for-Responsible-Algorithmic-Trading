@@ -232,7 +232,7 @@ See the included [LICENSE](LICENSE) and [NOTICE](NOTICE) files.
   journal = {Digital Finance},
   year    = {2026},
   note    = {Under review / accepted version pending},
-  doi     = {YOUR-DOI-HERE}
+  doi     = {https://ssrn.com/abstract=6789098}
 }
 ```
 
