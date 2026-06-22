@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.py[cod]
+
+.ipynb_checkpoints/
+.pytest_cache/
+
+mlruns/
+artifacts/
+
+demo_results.csv
+static/demo_plot.png
+
+.env
+.DS_Store
+Thumbs.db

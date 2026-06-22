@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fairness-Aware XAI — Demo UI</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Fairness-Aware XAI — Recruiter Demo</h1>
+
+      <p>Use this page to run a short demo of the pipeline and view results. The demo trains a small LightGBM model and applies fairness mitigation.</p>
+
+      <form method="post">
+        <label>Data path (relative):</label>
+        <input name="data_path" value="sp500_clean.csv" />
+
+        <label>Max rows (limit):</label>
+        <input name="limit" value="1000" />
+
+        <label>Output CSV:</label>
+        <input name="output" value="demo_results.csv" />
+
+        <button type="submit">Run demo</button>
+      </form>
+
+      <div class="status">
+        <h3>Status</h3>
+        <p>Running: {{ status.running }}</p>
+        <p>Last run: {{ status.last_run }}</p>
+        <p><a href="/results">View results</a></p>
+      </div>
+
+      <div class="note">If functions fail to import, ensure `demo.py` exists and dependencies are installed.</div>
+    </div>
+  </body>
+</html>

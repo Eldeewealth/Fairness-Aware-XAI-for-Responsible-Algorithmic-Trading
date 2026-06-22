@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Demo Results</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Demo Results</h1>
+
+      <div class="status">
+        <p>Running: {{ status.running }}</p>
+        <p>Last run: {{ status.last_run }}</p>
+      </div>
+
+      {% if status.results %}
+        <h2>Summary</h2>
+        <ul>
+        {% for k, v in status.results.items() %}
+          <li><strong>{{ k }}:</strong> {{ v }}</li>
+        {% endfor %}
+        </ul>
+      {% else %}
+        <p>No results yet. Run the demo from the <a href="/">home page</a>.</p>
+      {% endif %}
+
+      {% if img_exists %}
+      <div class="plot">
+        <h3>Accuracy Comparison</h3>
+        <img src="/static/demo_plot.png" alt="accuracy plot" />
+      </div>
+      {% endif %}
+
+      {% if csv_exists %}
+        <p><a href="/download">Download CSV results</a></p>
+      {% endif %}
+
+      <p><a href="/">Back</a></p>
+    </div>
+  </body>
+</html>
