@@ -248,11 +248,12 @@ def build_trade_table(trades_df: pd.DataFrame):
     return out[["date", "side", "price", "shares", "reason", "pnl", "equity"]].to_dict("records")
 
 
-app = Dash(__name__, title="Trading Strategy Simulator")
-server = app.server
+dash_app = Dash(__name__, title="Trading Strategy Simulator")
+server = dash_app.server
+app = server
 
 
-app.layout = html.Div(
+dash_app.layout = html.Div(
     [
         dcc.Interval(id="playback", interval=650, n_intervals=0, disabled=True),
         html.Div(
@@ -413,7 +414,7 @@ app.layout = html.Div(
 )
 
 
-@app.callback(
+@dash_app.callback(
     Output("playback", "disabled"),
     Output("play-button", "children"),
     Input("play-button", "n_clicks"),
@@ -425,7 +426,7 @@ def toggle_playback(_, disabled):
     return is_disabled, "Play" if is_disabled else "Pause"
 
 
-@app.callback(
+@dash_app.callback(
     Output("date-slider", "value"),
     Input("playback", "n_intervals"),
     Input("reset-button", "n_clicks"),
@@ -442,7 +443,7 @@ def advance_playback(_, reset_clicks, current):
     return min(current + 8, len(MARKET_DF) - 1)
 
 
-@app.callback(
+@dash_app.callback(
     Output("trading-chart", "figure"),
     Output("metrics", "children"),
     Output("trade-table", "data"),
@@ -476,4 +477,4 @@ def update_dashboard(end_idx, short_window, long_window, stop_loss, take_profit)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8050))
-    app.run(host="0.0.0.0", port=port, debug=False)
+    dash_app.run(host="0.0.0.0", port=port, debug=False)
