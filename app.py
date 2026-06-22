@@ -283,7 +283,7 @@ dash_app.layout = html.Div(
                                             id="date-slider",
                                             min=80,
                                             max=len(MARKET_DF) - 1,
-                                            value=len(MARKET_DF) - 1,
+                                            value=80,
                                             step=5,
                                             marks=None,
                                             tooltip={"placement": "bottom", "always_visible": False},
@@ -439,7 +439,7 @@ def advance_playback(_, reset_clicks, current):
         return no_update
     trigger = ctx.triggered[0]["prop_id"].split(".")[0]
     if trigger == "reset-button":
-        return 160
+        return 80
     return min(current + 8, len(MARKET_DF) - 1)
 
 
